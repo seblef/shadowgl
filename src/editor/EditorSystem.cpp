@@ -208,4 +208,23 @@ void EditorSystem::processInput()
         tools.unsetFlag(TF_CTRLDOWN);
 }
 
+void EditorSystem::saveMap()
+{
+    if(!_map)
+    {
+        LOG_S(ERROR) << "No map loaded";
+        return;
+    }
+    saveMapAs(_map->getFilename());
+}
+
+void EditorSystem::saveMapAs(const std::string& filename)
+{
+    if(!_map)
+    {
+        LOG_S(ERROR) << "No map loaded";
+        return;
+    }
+}
+
 }

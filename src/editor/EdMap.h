@@ -22,6 +22,7 @@ class EdMap
 protected:
     bool _valid;
     std::string _name;
+    std::string _filename;
 
     std::string _groundFile;
     EdGround* _ground;
@@ -52,6 +53,9 @@ protected:
 public:
     EdMap(const std::string& filename);
     ~EdMap();
+
+    const std::string& getName() const { return _name; }
+    const std::string& getFilename() const { return _filename; }
 
     bool isValid() const { return _valid; }
 

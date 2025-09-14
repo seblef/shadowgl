@@ -15,6 +15,9 @@ protected:
     bool loadMaterial(const std::string& matFilename);
     bool loadParticles(const std::string& filename);
 
+    bool saveMap();
+    bool saveMapAs(const std::string& filename);
+
 public:
 
     MainMenu() {}

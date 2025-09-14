@@ -65,6 +65,8 @@ public:
     void openWindow(IWindow* win);
 
     void loadMap(const std::string& filename);
+    void saveMap();
+    void saveMapAs(const std::string& filename);
 };
 
 

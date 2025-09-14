@@ -18,6 +18,7 @@ namespace Editor
 {
 
 EdMap::EdMap(const std::string& filename) :
+    _filename(filename),
     _ground(0),
     _width(0),
     _height(0),

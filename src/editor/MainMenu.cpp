@@ -31,6 +31,14 @@ void MainMenu::draw()
                     ifd::FileDialog::Instance().Open("ActorsFileDialog", "Open an actor", "Actor file (*.act){.act}", false);
                 ImGui::EndMenu();
             }
+            if(ImGui::BeginMenu("Save"))
+            {
+                if(ImGui::MenuItem("Save map"))
+                    saveMap();
+                if(ImGui::MenuItem("Save map as"))
+                    ifd::FileDialog::Instance().Save("SaveMapAsDialog", "Save map as", "Map file (*.yaml){.yaml}");
+                ImGui::EndMenu();
+            }
             if(ImGui::MenuItem("Quit"))
                 EditorSystem::getSingletonRef().quit();
             ImGui::EndMenu();
@@ -83,6 +91,16 @@ void MainMenu::updateFileDialogs()
 
     if(ifd::FileDialog::Instance().IsDone("ActorsFileDialog"))
         ifd::FileDialog::Instance().Close();
+
+    if(ifd::FileDialog::Instance().IsDone("SaveMapAsDialog"))
+    {
+        if(ifd::FileDialog::Instance().HasResult())
+        {
+            std::string filename = ifd::FileDialog::Instance().GetResult();
+            saveMapAs(filename);
+        }
+        ifd::FileDialog::Instance().Close();
+    }
 }
 
 bool MainMenu::loadMap(const std::string& mapFilename)
@@ -121,6 +139,18 @@ bool MainMenu::loadParticles(const std::string& filename)
     }
     else
         return false;
+}
+
+bool MainMenu::saveMap()
+{
+    EditorSystem::getSingletonRef().saveMap();
+    return true;
+}
+
+bool MainMenu::saveMapAs(const std::string& filename)
+{
+    EditorSystem::getSingletonRef().saveMapAs(filename);
+    return true;
 }
 
 }
